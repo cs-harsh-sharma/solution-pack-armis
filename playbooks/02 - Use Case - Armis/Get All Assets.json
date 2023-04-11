@@ -1,0 +1,138 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Get All Assets",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieve all the devices from Armis",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/3bb4552c-051e-43ac-80cd-d7f2c021f1f7",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/6300c72c-4442-4dba-8afc-36d3b64936b2",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Asset Record",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Get_All_Devices.data.data.results}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "alertIRI": "",
+                    "assetRecord": "{{vars.item}}",
+                    "parentAssetIRI": ""
+                },
+                "apply_async": true,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/94b4ad4e-eb69-473f-9266-f958afe09730"
+            },
+            "status": null,
+            "top": "340",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "09e19fe4-f39a-4cdf-801f-d29b36b1dedf"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "db1ebe0c-f919-4b42-96d7-e1a58519c824",
+                "resources": [
+                    "assets"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "40",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "6300c72c-4442-4dba-8afc-36d3b64936b2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get All Devices",
+            "description": null,
+            "arguments": {
+                "name": "Armis",
+                "config": "e1ef8dae-9a3e-44fb-a96f-a0a08139bf9a",
+                "params": {
+                    "site": "",
+                    "limit": 100000,
+                    "offset": "",
+                    "device_id": "",
+                    "ip_address": "",
+                    "risk_level": "",
+                    "time_frame": "",
+                    "device_name": "",
+                    "device_type": "",
+                    "mac_address": ""
+                },
+                "version": "1.1.0",
+                "connector": "armis",
+                "operation": "get_devices",
+                "operationTitle": "Get Devices List",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "180",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "9fd49cce-d5ea-4e59-a4bc-4ae550e81f94"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get All Devices -> Create Asset Record",
+            "targetStep": "\/api\/3\/workflow_steps\/09e19fe4-f39a-4cdf-801f-d29b36b1dedf",
+            "sourceStep": "\/api\/3\/workflow_steps\/9fd49cce-d5ea-4e59-a4bc-4ae550e81f94",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "454ce6c6-ca68-4a4f-bbbd-ec549809c4d7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get All Devices",
+            "targetStep": "\/api\/3\/workflow_steps\/9fd49cce-d5ea-4e59-a4bc-4ae550e81f94",
+            "sourceStep": "\/api\/3\/workflow_steps\/6300c72c-4442-4dba-8afc-36d3b64936b2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bd80eb82-ef5e-4a31-a397-c502915a5f7a"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "698f6c8b-7f4a-4b05-8e4a-03a9307201b4",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Assets",
+        "ManualTrigger",
+        "Armis"
+    ]
+}

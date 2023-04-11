@@ -1,0 +1,191 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "On Asset Creation",
+    "aliasName": null,
+    "tag": null,
+    "description": "On Asset Creation (from Armis) link it to existing KEV Alert (if any of same vendor).",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/3bb4552c-051e-43ac-80cd-d7f2c021f1f7",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/139e3c20-fd4d-4e8d-8951-93087ec7773a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "assets",
+                "resources": [
+                    "assets"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "array",
+                            "field": "recordTags",
+                            "value": [
+                                "\/api\/3\/tags\/Armis"
+                            ],
+                            "module": "recordTags",
+                            "display": "",
+                            "operator": "in",
+                            "template": "tags",
+                            "OPERATOR_KEY": "$",
+                            "useInOperator": true,
+                            "previousOperator": "in",
+                            "previousTemplate": "tags"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "20",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "139e3c20-fd4d-4e8d-8951-93087ec7773a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "record": "{{vars.input.records[0]}}"
+            },
+            "status": null,
+            "top": "160",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "5dde75aa-4a0b-45f8-93bc-757ba107ba52"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Asset With KEV Alert_ICS Advisory_CVEs",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Get_KEV_Alert | length > 0}}",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p>Correlated <span class=\"badge badge-pill badge-danger\" style=\"background: #009d00; color: #fff;\">KEV Alert<\/span> <span class=\"badge badge-pill badge-danger\" style=\"background: #009d00; color: #fff;\">ICS Advisories<\/span> and <span class=\"badge badge-pill badge-danger\" style=\"background: #009d00; color: #fff;\">CVEs<\/span> as per CVEs fetched from Armis as per vendor <span class=\"badge badge-pill badge-danger\" style=\"background: #009d00; color: #fff;\">{{vars.record.vendor}}<\/span> of this Asset.<\/p>\n<h5>KEV Alert<\/h5>\n<p>{% for item in vars.kEVAlertIRI %} {{loop.index}}: <a href=\"\/modules\/k_e_v_alerts\/{{item.split('\/')[-1]}}\" target=\"_blank\" rel=\"noopener\">{{(item | fromIRI).title}} <\/a><br \/>{% endfor %}<\/p>",
+                    "records": ""
+                },
+                "resource": {
+                    "__link": {
+                        "cVEs": "{{vars.cVEIRI}}",
+                        "kEVAlerts": "{{vars.kEVAlertIRI}}",
+                        "iCSAdvisories": "{{vars.iCSAdvisoryIRI}}"
+                    }
+                },
+                "operation": "Append",
+                "collection": "{{vars.record[\"@id\"]}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/assets",
+                "fieldOperation": {
+                    "protocol": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "440",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "9642d55e-fc31-4e62-b9ba-56004681bec1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get KEV Alert",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "array",
+                            "field": "recordTags",
+                            "value": "{{vars.record.vendor}}",
+                            "_value": "{{vars.record.vendor}}",
+                            "operator": "in"
+                        }
+                    ]
+                },
+                "module": "k_e_v_alerts?$limit=30&$relationships=true&$fsr_max_relation_count=100",
+                "checkboxFields": false,
+                "step_variables": {
+                    "cVEIRI": "{{vars.steps.Get_KEV_Alert | json_query('[*][\"c_v_es\"][][][\"@id\"][]') | unique}}",
+                    "kEVAlertIRI": "{{vars.steps.Get_KEV_Alert | json_query('[*][\"@id\"][]') }}",
+                    "iCSAdvisoryIRI": "{{vars.steps.Get_KEV_Alert | json_query('[*][\"i_c_s_advisories\"][][][\"@id\"][]')}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "afa85a65-7d7c-4461-a6a9-b8d7e826e3c2"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get KEV Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/afa85a65-7d7c-4461-a6a9-b8d7e826e3c2",
+            "sourceStep": "\/api\/3\/workflow_steps\/5dde75aa-4a0b-45f8-93bc-757ba107ba52",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7a26da44-0c7f-4ec5-8b8b-656736cb4a39"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get KEV Alert -> Update Asset With KEV Alert_ICS Advisory_CVEs",
+            "targetStep": "\/api\/3\/workflow_steps\/9642d55e-fc31-4e62-b9ba-56004681bec1",
+            "sourceStep": "\/api\/3\/workflow_steps\/afa85a65-7d7c-4461-a6a9-b8d7e826e3c2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c14ba860-43d1-4712-a92e-a92659c7cd98"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/5dde75aa-4a0b-45f8-93bc-757ba107ba52",
+            "sourceStep": "\/api\/3\/workflow_steps\/139e3c20-fd4d-4e8d-8951-93087ec7773a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fdd9e83e-91c2-40b7-b659-7c526bb6ffd3"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "641e59f8-aa10-4be5-9d1a-1172bfca77f7",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "KEV",
+        "Alert",
+        "PostCreate",
+        "Armis"
+    ]
+}

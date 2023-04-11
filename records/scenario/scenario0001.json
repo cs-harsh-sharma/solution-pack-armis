@@ -1,0 +1,35 @@
+[
+    {
+        "@type": "Scenario",
+        "configuration": null,
+        "title": "Armis Scenario",
+        "description": "This Scenario adds 10 CVEs, 5 ICS Advisory, 5 KEV Alert and \"[Threat] Ransomware Communication Detected\" Alert. These data can be used to understand Armis Use Case.",
+        "steps": {
+            "Steps": [
+                {
+                    "name": "Scenario - Create Armis Alert.",
+                    "type": "executePlaybook",
+                    "playbookIRI": "\/api\/3\/workflows\/e3840d65-6010-4959-b89e-a8007e35fae6",
+                    "preCreateMessage": "Creating CVEs, ICS Advisroy, KEV Alert and Alert demo records.",
+                    "postCreateMessage": "",
+                    "waitTimeforNextStep": "0"
+                }
+            ]
+        },
+        "createdAlertsID": null,
+        "uuid": "f8ed1a2f-8fc4-4639-bf7d-a38b406c0f36",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1680776790.126552,
+        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+        "modifyDate": 1681135522.5446,
+        "id": 10,
+        "recordTags": [
+            "Alert",
+            "Asset",
+            "KEV",
+            "CVE",
+            "Armis",
+            "ICS - Advisory"
+        ]
+    }
+]

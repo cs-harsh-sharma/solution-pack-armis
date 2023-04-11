@@ -1,0 +1,17 @@
+[
+    {
+        "@type": "Attachment",
+        "name": "Armis - Sample CVEs, ICS Advisory, KEV Alert And Alert",
+        "description": null,
+        "file": "\/api\/3\/files\/06890248-6ea0-4192-9603-dc61331edce6",
+        "type": null,
+        "uuid": "7a23c453-070c-40f3-8301-9742bd8eab11",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1681128345.129822,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1681128345.129822,
+        "id": 13,
+        "recordTags": [],
+        "assignee": ""
+    }
+]

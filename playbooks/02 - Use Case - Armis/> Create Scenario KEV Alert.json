@@ -1,0 +1,226 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "> Create Scenario KEV Alert",
+    "aliasName": null,
+    "tag": null,
+    "description": "Playbook creates scenario KEV Alert.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "kEVRecord",
+        "iCSAdvisoryIRI"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/3bb4552c-051e-43ac-80cd-d7f2c021f1f7",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/43303165-dac0-4d07-82b4-17639a3b8aa9",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create KEV Alert",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "title": "{{vars.kevAlert.title}}",
+                    "report": "<p>{{vars.kevAlert.report}}<\/p>",
+                    "summary": "{{vars.kevAlert.summary}}",
+                    "__replace": "",
+                    "patchExist": "\/api\/3\/picklists\/27ff216f-6363-4c93-9fc4-e0e8c15cb0b1",
+                    "recordTags": "{{vars.kevAlert.recordTags}}",
+                    "patchAssignment": "{{vars.kevAlert.patchAssignment}}",
+                    "i_c_s_advisories": "{{vars.input.params.iCSAdvisoryIRI}}",
+                    "exploitationStatus": "{{vars.kevAlert.exploitationStatus['@id']}}",
+                    "vulnerabilityAssignment": "<p>{{vars.kevAlert.vulnerabilityAssignment}}<\/p>"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/k_e_v_alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "231adfd8-2ebf-4ce6-ba3b-08c355f9ab8e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "43303165-dac0-4d07-82b4-17639a3b8aa9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "kevAlert": "{{vars.input.params.kEVRecord}}"
+            },
+            "status": null,
+            "top": "160",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "48229969-f442-489d-8758-25f00428ee6f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Output",
+            "description": null,
+            "arguments": {
+                "kevIRI": "{{vars.steps.Create_KEV_Alert['@id']}}"
+            },
+            "status": null,
+            "top": "700",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "87915b17-9c54-4fa5-972b-b47e5cc0c9f5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update CVEs With KEV Alert",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Get_KEV_CVEs | flatten}}",
+                    "__bulk": true,
+                    "condition": "",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "__link": {
+                        "kEVAlerts": "{{vars.steps.Create_KEV_Alert['@id']}}"
+                    }
+                },
+                "operation": "Append",
+                "collection": "{{vars.item['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/c_v_es",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "560",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "e5a4ae85-2962-4d18-ad33-de4bb8c0210f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get KEV CVEs",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "cVEID",
+                            "value": "{{vars.item}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "c_v_es?$limit=5000",
+                "for_each": {
+                    "item": "{{vars.kevAlert.cVEList}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "f5e20af0-e4bf-43f7-af9a-7b7f030ed689"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/48229969-f442-489d-8758-25f00428ee6f",
+            "sourceStep": "\/api\/3\/workflow_steps\/43303165-dac0-4d07-82b4-17639a3b8aa9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1a16809f-bde6-44cb-beae-a76bfbdc0bde"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get KEV CVEs -> Create KEV Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/231adfd8-2ebf-4ce6-ba3b-08c355f9ab8e",
+            "sourceStep": "\/api\/3\/workflow_steps\/f5e20af0-e4bf-43f7-af9a-7b7f030ed689",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "547d3df4-76da-44ab-9d21-b2f042ffcafa"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create KEV Alert -> Update CVEs With KEV Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/e5a4ae85-2962-4d18-ad33-de4bb8c0210f",
+            "sourceStep": "\/api\/3\/workflow_steps\/231adfd8-2ebf-4ce6-ba3b-08c355f9ab8e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7c83b9b4-5410-4664-90eb-ef18e0941d0c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get KEV CVEs",
+            "targetStep": "\/api\/3\/workflow_steps\/f5e20af0-e4bf-43f7-af9a-7b7f030ed689",
+            "sourceStep": "\/api\/3\/workflow_steps\/48229969-f442-489d-8758-25f00428ee6f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7f3bb175-0fed-422c-8530-d73ae3c29764"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update CVEs With KEV Alert -> Output",
+            "targetStep": "\/api\/3\/workflow_steps\/87915b17-9c54-4fa5-972b-b47e5cc0c9f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/e5a4ae85-2962-4d18-ad33-de4bb8c0210f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d80048f3-0931-4718-beda-e8b45b4d430b"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "f107d150-5a29-4750-9008-51280739e6fc",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Armis",
+        "Alert",
+        "Referenced",
+        "Scenario",
+        "KEV"
+    ]
+}

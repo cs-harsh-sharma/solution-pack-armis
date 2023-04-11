@@ -1,0 +1,11 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowCollection",
+    "@type": "WorkflowCollection",
+    "name": "02 - Use Case - Armis",
+    "description": null,
+    "visible": true,
+    "image": null,
+    "uuid": "3bb4552c-051e-43ac-80cd-d7f2c021f1f7",
+    "deletedAt": null,
+    "recordTags": []
+}

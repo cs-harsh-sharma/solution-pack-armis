@@ -1,0 +1,90 @@
+{
+    "name": "armis",
+    "version": "1.0.0",
+    "fsrMinCompatibility": "7.3.0",
+    "type": "solutionpack",
+    "local": true,
+    "label": "Armis",
+    "dependencies": [
+        {
+            "name": "sOARFramework",
+            "type": "solutionpack",
+            "label": "SOAR Framework",
+            "minVersion": "2.1.0"
+        },
+        {
+            "name": "socSimulator",
+            "type": "solutionpack",
+            "label": "SOC Simulator",
+            "minVersion": null
+        },
+        {
+            "name": "oT-AssetManagement",
+            "type": "solutionpack",
+            "label": "OT - Asset Management",
+            "minVersion": null
+        },
+        {
+            "name": "oT-VulnerabilityManagement",
+            "type": "solutionpack",
+            "label": "OT - Vulnerability Management",
+            "minVersion": null
+        }
+    ],
+    "prerequisite": null,
+    "publisher": "Fortinet",
+    "description": "The Armis Solution Pack helps in retrieving all relevant Assets and CVEs for an Alert from Armis. Solution Pack fetches CVEs from Armis in accordance with Asset Device ID. Helps in Deploying Decoys, Isolate affected assets and raise Ticket in Service Now.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-armis/blob/release/1.0.0/README.md",
+    "category": [
+        "Vulnerability Management",
+        "OT & IoT Security"
+    ],
+    "supportInfo": null,
+    "iconLarge": null,
+    "date": "2023-04-10T14:20:21+00:00",
+    "contents": {
+        "playbooks": [
+            {
+                "name": "02 - Use Case - Armis"
+            }
+        ],
+        "globalVariables": [
+            {
+                "id": 16,
+                "name": "Demo_mode",
+                "value": "true",
+                "default_value": "false"
+            }
+        ],
+        "connectors": [
+            {
+                "name": "Armis",
+                "apiName": "armis"
+            },
+            {
+                "name": "Fortinet FortiDeceptor",
+                "apiName": "fortinet-fortideceptor"
+            },
+            {
+                "name": "Fortinet FortiEDR",
+                "apiName": "fortinet-fortiedr"
+            },
+            {
+                "name": "ServiceNow",
+                "apiName": "servicenow"
+            }
+        ],
+        "recordSets": [
+            {
+                "name": "Attachments",
+                "apiName": "attachments",
+                "count": 1
+            },
+            {
+                "name": "Scenario",
+                "apiName": "scenario",
+                "count": 1
+            }
+        ]
+    }
+}
