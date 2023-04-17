@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": null,
     "description": "Retrieve all the devices from Armis",
-    "isActive": true,
+    "isActive": false,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -131,8 +131,8 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
+        "Armis",
         "Assets",
-        "ManualTrigger",
-        "Armis"
+        "ManualTrigger"
     ]
 }

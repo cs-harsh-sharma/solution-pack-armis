@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": null,
     "description": "This Playbook will deploy FortiDECEPTOR decoy on assets, isolates assets in FortiEDR and raise ticket in Service Now.",
-    "isActive": true,
+    "isActive": false,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -560,12 +560,12 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "ServiceNow",
-        "ManualTrigger",
         "Alerts",
+        "Armis",
         "Assets",
-        "FortiEDR",
         "FortiDECEPTOR",
-        "Armis"
+        "FortiEDR",
+        "ManualTrigger",
+        "ServiceNow"
     ]
 }

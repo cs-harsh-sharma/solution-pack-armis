@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": null,
     "description": "Playbook executes post alert creation(source Armis) and get Assets and CVEs from Armis.",
-    "isActive": true,
+    "isActive": false,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -48,8 +48,8 @@
                 }
             },
             "status": null,
-            "top": "30",
-            "left": "125",
+            "top": "20",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "group": null,
             "uuid": "10fc0e9a-c937-432f-a4e4-40c79371c921"
@@ -64,7 +64,7 @@
                 "params": {
                     "site": "",
                     "limit": "",
-                    "offset": "",
+                    "offset": 1000,
                     "device_id": "{{vars.sourceData['deviceIds']}}",
                     "ip_address": "",
                     "risk_level": "",
@@ -76,14 +76,14 @@
                 "version": "1.1.0",
                 "connector": "armis",
                 "operation": "get_devices",
-                "mock_result": "{\n    \"data\": {\n        \"data\": {\n            \"count\": 1,\n            \"next\": null,\n            \"prev\": null,\n            \"results\": [\n                {\n                    \"accessSwitch\": null,\n                    \"boundaries\": \"Diagnostic Imaging\",\n                    \"businessImpact\": \"Unassigned\",\n                    \"category\": \"Medical\",\n                    \"customProperties\": {},\n                    \"dataSources\": [\n                        {\n                            \"firstSeen\": \"2023-03-31T03:00:00.748419+00:00\",\n                            \"lastSeen\": \"2023-04-06T13:00:00.551798+00:00\",\n                            \"name\": \"Traffic Inspection\",\n                            \"types\": [\n                                \"Traffic Inspection\",\n                                \"Data Analysis\"\n                            ]\n                        }\n                    ],\n                    \"firstSeen\": \"2023-03-10T18:07:23.305173+00:00\",\n                    \"id\": 147,\n                    \"ipAddress\": \"10.64.242.51\",\n                    \"ipv6\": null,\n                    \"lastSeen\": \"2023-04-07T14:07:29.305173+00:00\",\n                    \"macAddress\": \"E6:45:E8:18:98:1A\",\n                    \"manufacturer\": \"Siemens\",\n                    \"model\": \"SOMATOM Definition AS\",\n                    \"name\": \"somatom-ct006\",\n                    \"operatingSystem\": \"Windows\",\n                    \"operatingSystemVersion\": \"7\",\n                    \"purdueLevel\": 4.0,\n                    \"riskLevel\": 7,\n                    \"sensor\": {\n                        \"name\": \"Medical 1\",\n                        \"type\": \"Wireless LAN Controller\"\n                    },\n                    \"site\": {\n                        \"location\": \"New York\",\n                        \"name\": \"ACME Hospital\"\n                    },\n                    \"tags\": [],\n                    \"type\": \"CTs\",\n                    \"userIds\": [],\n                    \"visibility\": \"Full\"\n                }\n            ],\n            \"total\": 1\n        },\n        \"success\": true\n    }\n}",
+                "mock_result": "{\n    \"data\": \n        {\n            \"data\": {\n                \"count\": 2,\n                \"next\": null,\n                \"prev\": null,\n                \"results\": [\n                    {\n                        \"accessSwitch\": null,\n                        \"boundaries\": \"ICS\",\n                        \"businessImpact\": \"Unassigned\",\n                        \"category\": \"Manufacturing Equipment\",\n                        \"customProperties\": {},\n                        \"dataSources\": [],\n                        \"firstSeen\": \"2022-12-28T00:41:18.599499+00:00\",\n                        \"id\": 3225,\n                        \"ipAddress\": \"10.235.6.56\",\n                        \"ipv6\": null,\n                        \"lastSeen\": \"2023-04-06T16:07:58.040985+00:00\",\n                        \"macAddress\": \"3C:0B:06:15:09:4F\",\n                        \"manufacturer\": \"Rockwell Automation\",\n                        \"model\": \"1756-L81ES\/B\",\n                        \"name\": \"1756-l81es\/b\",\n                        \"operatingSystem\": null,\n                        \"operatingSystemVersion\": \"32.012\",\n                        \"purdueLevel\": 1.0,\n                        \"riskLevel\": 8,\n                        \"sensor\": {\n                            \"name\": \"Factory 1\",\n                            \"type\": \"Switch\"\n                        },\n                        \"site\": {\n                            \"location\": \"Austin, TX\",\n                            \"name\": \"TX ICS Center\"\n                        },\n                        \"tags\": [],\n                        \"type\": \"PLCs\",\n                        \"userIds\": [],\n                        \"visibility\": \"Full\"\n                    },\n                    {\n                        \"accessSwitch\": null,\n                        \"boundaries\": \"ICS\",\n                        \"businessImpact\": \"Unassigned\",\n                        \"category\": \"Manufacturing Equipment\",\n                        \"customProperties\": {},\n                        \"dataSources\": [\n                            {\n                                \"firstSeen\": \"2023-03-31T02:00:00.034461+00:00\",\n                                \"lastSeen\": \"2023-04-06T11:00:00.701700+00:00\",\n                                \"name\": \"Traffic Inspection\",\n                                \"types\": [\n                                    \"Traffic Inspection\",\n                                    \"Data Analysis\"\n                                ]\n                            },\n                            {\n                                \"firstSeen\": \"2023-02-10T21:16:32.311055+00:00\",\n                                \"lastSeen\": \"2023-03-08T21:46:15.465691+00:00\",\n                                \"name\": \"Cisco WLC\",\n                                \"types\": [\n                                    \"WLC\"\n                                ]\n                            }\n                        ],\n                        \"firstSeen\": \"2022-12-28T02:24:17.463532+00:00\",\n                        \"id\": 2151,\n                        \"ipAddress\": \"10.235.19.64\",\n                        \"ipv6\": null,\n                        \"lastSeen\": \"2023-04-06T11:00:00.701700+00:00\",\n                        \"macAddress\": \"85:CF:55:9E:0B:87\",\n                        \"manufacturer\": \"Intel\",\n                        \"model\": \"Latitude 5591\",\n                        \"name\": \"latitude 5591\",\n                        \"operatingSystem\": \"Windows\",\n                        \"operatingSystemVersion\": \"10\",\n                        \"purdueLevel\": 2.0,\n                        \"riskLevel\": 8,\n                        \"sensor\": {\n                            \"name\": \"Factory 1\",\n                            \"type\": \"Switch\"\n                        },\n                        \"site\": {\n                            \"location\": \"Austin, TX\",\n                            \"name\": \"TX ICS Center\"\n                        },\n                        \"tags\": [],\n                        \"type\": \"Engineering Workstations\",\n                        \"userIds\": [\n                            9\n                        ],\n                        \"visibility\": \"Full\"\n                    }\n                ],\n                \"total\": 2\n            },\n            \"success\": true\n        }\n}",
                 "operationTitle": "Get Devices List",
                 "pickFromTenant": false,
                 "step_variables": []
             },
             "status": null,
             "top": "300",
-            "left": "125",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "39475abe-a4a6-48ac-a20f-7ec3b84943b3"
@@ -129,8 +129,8 @@
                 "workflowReference": "\/api\/3\/workflows\/94b4ad4e-eb69-473f-9266-f958afe09730"
             },
             "status": null,
-            "top": "435",
-            "left": "125",
+            "top": "440",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "ff785806-4a3d-4407-9a28-f54cb7b28010"
@@ -172,10 +172,10 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "KEV",
-        "CVE",
-        "PostCreate",
         "Alert",
-        "Armis"
+        "Armis",
+        "CVE",
+        "KEV",
+        "PostCreate"
     ]
 }

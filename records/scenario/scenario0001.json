@@ -16,12 +16,12 @@
                 }
             ]
         },
-        "createdAlertsID": null,
+        "createdAlertsID": "[\"\/api\/3\/c_v_es\/1ff513c3-7270-4194-9046-b7454a9bca38\", \"\/api\/3\/c_v_es\/c66edb71-78ff-4d35-89e2-0fe5be16a40d\", \"\/api\/3\/c_v_es\/c697bd71-e372-4945-a733-517ed3701d8d\", \"\/api\/3\/c_v_es\/de113232-e26e-437f-8646-233651da574e\", \"\/api\/3\/c_v_es\/f22c6dc2-98fc-47e1-926c-8ceabe9034b2\", \"\/api\/3\/c_v_es\/4bc23203-f2dc-4df0-ace8-4f559ccdace8\", \"\/api\/3\/c_v_es\/af39cf8b-fa03-4ebe-a40a-21ab517269b6\", \"\/api\/3\/c_v_es\/00bbbbc4-2fd2-4578-bd8f-f4e76567ad0d\", \"\/api\/3\/c_v_es\/81880fb2-f109-432d-b966-4496f7184f92\", \"\/api\/3\/c_v_es\/a895e216-2e65-41b3-8314-5a9a40287200\", \"\/api\/3\/i_c_s_advisories\/5a41a606-72bc-4baa-8bc8-1d443b814f5f\", \"\/api\/3\/i_c_s_advisories\/9e1279e3-4a66-48e9-a9f7-b02cbfb772ce\", \"\/api\/3\/i_c_s_advisories\/1e8a2437-fb0e-40be-a92b-f989e3408236\", \"\/api\/3\/i_c_s_advisories\/f4306d39-f468-4aa7-a2a2-4a0dc7083265\", \"\/api\/3\/i_c_s_advisories\/c3b77ff4-58f6-4469-9cb7-d5da4a014f84\", \"\/api\/3\/k_e_v_alerts\/b394bd1f-2992-439a-b9b5-5ca95c653857\", \"\/api\/3\/k_e_v_alerts\/a6034dd7-108b-4614-86c8-890f907933a7\", \"\/api\/3\/k_e_v_alerts\/883049c9-e540-47b4-a208-3a24d82b993c\", \"\/api\/3\/k_e_v_alerts\/4344a32c-231b-42a2-8667-ef680e3fe209\", \"\/api\/3\/k_e_v_alerts\/fd9654e7-88d7-452f-9e0c-4d1677f6297f\", \"\/api\/3\/alerts\/2b7f1b44-0380-4dd3-83cb-5d6941e55801\"]",
         "uuid": "f8ed1a2f-8fc4-4639-bf7d-a38b406c0f36",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1680776790.126552,
         "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1681135522.5446,
+        "modifyDate": 1681291943.790481,
         "id": 10,
         "recordTags": [
             "Alert",

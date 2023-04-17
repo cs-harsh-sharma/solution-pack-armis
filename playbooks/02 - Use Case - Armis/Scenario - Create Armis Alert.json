@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": null,
     "description": "Playbook generated sample CVEs, ICS Advisory, KEV Alert and Alert to understand Armis Use Case.",
-    "isActive": true,
+    "isActive": false,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -23,7 +23,7 @@
                 "@id": "{{vars.recordIRI}}"
             },
             "status": null,
-            "top": "1240",
+            "top": "560",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -41,7 +41,7 @@
                 }
             },
             "status": null,
-            "top": "20",
+            "top": "0",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
@@ -49,40 +49,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get JSON Data",
-            "description": null,
-            "arguments": {
-                "query": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "primitive",
-                            "field": "name",
-                            "value": "Armis - Sample CVEs, ICS Advisory, KEV Alert And Alert",
-                            "operator": "eq",
-                            "_operator": "eq"
-                        }
-                    ]
-                },
-                "module": "attachments?$limit=30",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "160",
-            "left": "120",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "group": null,
-            "uuid": "4e25bd27-2fee-48fe-9f74-7a9679bd10d5"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Create ICS Advisory Record",
             "description": null,
             "arguments": {
                 "for_each": {
-                    "item": "{{vars.iCSAdvisoryData}}",
+                    "item": "{{vars.ics_advisory}}",
                     "__bulk": true,
                     "parallel": false,
                     "condition": "",
@@ -121,7 +92,7 @@
                 }
             },
             "status": null,
-            "top": "700",
+            "top": "420",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -150,8 +121,8 @@
                 "workflowReference": "\/api\/3\/workflows\/f107d150-5a29-4750-9008-51280739e6fc"
             },
             "status": null,
-            "top": "980",
-            "left": "120",
+            "top": "400",
+            "left": "960",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "6141d610-530d-4e4f-9cd5-18919e669691"
@@ -204,8 +175,8 @@
                 }
             },
             "status": null,
-            "top": "560",
-            "left": "120",
+            "top": "120",
+            "left": "960",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "be72719d-7860-4d3e-9b50-c0ed81e29493"
@@ -238,8 +209,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
-            "left": "125",
+            "top": "260",
+            "left": "960",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "c9bc39dc-d529-47fa-9eb2-6029f51c24a8"
@@ -249,15 +220,13 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "cVEData": "{{vars.extractedText['cVEData']}}",
                 "recordIRI": "[]",
                 "sSVCSchema": "{\n  \"Exploitation\": \"\",\n  \"Technical Impact\": \"\",\n  \"Automatable\": \"\",\n  \"Mission Prevalence\": \"\",\n  \"Well Being\": \"\",\n  \"Mitigation Status\": \"\",\n  \"Automatable Reason\": \"\"\n}",
-                "sourceData": "{\n    \"activityUUIDs\": [\n        \"-N3mVocBAAAAAFMnS7Tz\"\n    ],\n    \"alertId\": 15,\n    \"connectionIds\": [],\n    \"description\": \"The Armis security platform has detected a violation of a policy and generated an alert.\",\n    \"deviceIds\": [\n        147\n    ],\n    \"severity\": \"High\",\n    \"status\": \"Unhandled\",\n    \"time\": \"2023-04-06T19:02:25.305173+00:00\",\n    \"title\": \"[Threat] Ransomware Communication Detected\",\n    \"type\": \"System Policy Violation\"\n}",
-                "kEVAlertData": "{{vars.extractedText['kEVAlertData']}}",
-                "iCSAdvisoryData": "{{vars.extractedText['iCSAdvisoryData']}}"
+                "sourceData": "{\n    \"activityUUIDs\": [\n        \"V9_mVocBAAAAAFMnewp_\",\n        \"Wt_mVocBAAAAAFMnewp_\"\n    ],\n    \"alertId\": 193,\n    \"connectionIds\": [],\n    \"description\": \"The Armis security platform has detected a violation of a policy and generated an alert.\",\n    \"deviceIds\": [\n        3225,\n        2151\n    ],\n    \"severity\": \"Medium\",\n    \"status\": \"Unhandled\",\n    \"time\": \"2023-04-05T20:39:25.336869+00:00\",\n    \"title\": \"[Suspicious\/OT] PLC Hardware Change\",\n    \"type\": \"System Policy Violation\"\n}",
+                "ics_advisory": "{\n  \"year\": \"2017\",\n  \"cVEID\": \"CVE-2017-6736, CVE-2017-6737, CVE-2017-6738, CVE-2017-6739, CVE-2017-6740, CVE-2017-6741, CVE-2017-6742, CVE-2017-6743, CVE-2017-6744\",\n  \"cWEID\": \"CWE-119\",\n  \"isKEV\": {\n    \"id\": 369,\n    \"@id\": \"\/api\/3\/picklists\/cfd49634-d25a-476f-8485-99585e589a8c\",\n    \"icon\": null,\n    \"uuid\": \"cfd49634-d25a-476f-8485-99585e589a8c\",\n    \"@type\": \"Picklist\",\n    \"color\": null,\n    \"listName\": \"\/api\/3\/picklist_names\/7b348719-8ffc-4c94-8ce7-1812eae43d78\",\n    \"itemValue\": \"Yes\",\n    \"importedBy\": [],\n    \"orderIndex\": 0\n  },\n  \"vendor\": \"Rockwell Automation\",\n  \"iCSAUrl\": \"https:\/\/us-cert.cisa.gov\/\/ics\/advisories\/icsa-17-208-04\",\n  \"product\": \"Allen-Bradley Stratix and ArmorStratix\",\n  \"assignee\": \"\",\n  \"iCSCERTID\": \"ICSA-17-208-04\",\n  \"recordTags\": [\n    \"Critical Manufacturing\",\n    \" Energy\",\n    \"KEV\",\n    \"Rockwell Automation\",\n    \" Water and Wastewater\"\n  ],\n  \"lastUpdated\": 1503878400,\n  \"cVSSSeverity\": {\n    \"id\": 358,\n    \"@id\": \"\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb\",\n    \"icon\": null,\n    \"uuid\": \"40187287-89fc-4e9c-b717-e9443d57eedb\",\n    \"@type\": \"Picklist\",\n    \"color\": \"#DE7A13\",\n    \"listName\": \"\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac\",\n    \"itemValue\": \"High\",\n    \"importedBy\": [],\n    \"orderIndex\": 3\n  },\n  \"iCSCERTTitle\": \"Rockwell Automation Allen-Bradley Stratix and ArmorStratix\",\n  \"cumulativeCVSS\": 8.8,\n  \"affectedProducts\": \"The following versions of Allen-Bradley Stratix and ArmorStratix switches are affected: All Versions 15.2(5)EA.fc4 and earlierAllen-Bradley Stratix 5400 Industrial Ethernet SwitchesAllen-Bradley Stratix 5410 Industrial Distribution SwitchesAllen-Bradley Stratix 5700 and ArmorStratix\u2122 5700 Industrial Managed Ethernet SwitchesAllen-Bradley Stratix 8000 Modular Managed Ethernet SwitchesAll Versions 15.6(3)M1 and earlierAllen-Bradley Stratix 5900 Services RouterAll Versions 15.2(4)EA and earlierStratix 8300 Modular Managed Ethernet Switches\",\n  \"companyHeadquarters\": \"United States\",\n  \"originalReleaseDate\": 1503532800,\n  \"countriesAreasDeployed\": \"Worldwide\",\n  \"criticalInfrastructureSector\": \"Critical Manufacturing; Energy; Water and Wastewater\"\n}"
             },
             "status": null,
-            "top": "440",
+            "top": "140",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -265,52 +234,25 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Extract Artifacts",
-            "description": null,
-            "arguments": {
-                "name": "File Content Extraction",
-                "config": "70616ece-f92a-459b-88e5-cbf1b07b37b2",
-                "params": {
-                    "file_iri": "{{vars.steps.Get_JSON_Data[0].file['@id']}}",
-                    "html_output_format": false
-                },
-                "version": "1.0.3",
-                "connector": "file-content-extraction",
-                "operation": "extract_text",
-                "operationTitle": "Extract Text",
-                "pickFromTenant": false,
-                "step_variables": {
-                    "extractedText": "{{vars.steps.Extract_Artifacts.data['extracted_text']}}"
-                }
-            },
-            "status": null,
-            "top": "300",
-            "left": "120",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "d51caf1e-0912-45fc-86f3-2641f89c8cc1"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Create Alerts",
             "description": null,
             "arguments": {
                 "resource": {
-                    "name": "[Threat] Ransomware Communication Detected",
+                    "name": "[Suspicious\/OT] PLC Hardware Change",
                     "type": "\/api\/3\/picklists\/574a6ee2-7265-4701-815e-cff83b053bce",
                     "state": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
                     "source": "Armis",
                     "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
                     "fsrQueue": "\/api\/3\/fsr_queues\/4cf6073b-319d-4c30-887c-f642adfede82",
-                    "severity": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
-                    "sourceId": "15",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "sourceId": "193",
                     "__replace": "",
-                    "eventTime": "2023-04-06T19:02:25Z",
+                    "eventTime": "2023-04-05T20:39:25Z",
                     "recordTags": [
                         "\/api\/3\/tags\/Alerts"
                     ],
                     "sourcedata": "{{vars.sourceData | toJSON}}",
-                    "description": "<table border=\\\"1\\\"><thead><tr><th width=\\\"250\\\">Fields<\/th><th width=\\\"250\\\">Values<\/th><\/tr><\/thead>\n<tbody>\n<tr><td>Description<\/td>\n<td>The Armis security platform has detected a violation of a policy and generated an alert.<\/td><\/tr>\n<td>Risk<\/td>\n<td>High<\/td><\/tr>\n<\/tbody>\n<\/table>\n",
+                    "description": "<table border=\\\"1\\\"><thead><tr><th width=\\\"250\\\">Fields<\/th><th width=\\\"250\\\">Values<\/th><\/tr><\/thead>\n<tbody>\n<tr>\n<td>Description<\/td>\n<td>The Armis security platform has detected a violation of a policy and generated an alert.<\/td>\n<\/tr>\n<tr>\n<td>Risk<\/td>\n<td>Medium<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n",
                     "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "priorityWeight": 1,
@@ -329,7 +271,7 @@
                 }
             },
             "status": null,
-            "top": "1100",
+            "top": "280",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -339,39 +281,48 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Artifacts -> Configuration",
+            "name": "Start -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/cbbd819b-69fe-463d-a5e1-4374080f2ecd",
-            "sourceStep": "\/api\/3\/workflow_steps\/d51caf1e-0912-45fc-86f3-2641f89c8cc1",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "103f97e3-f589-481a-89fd-eb5dedc6239d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create CVEs Record -> Create ICS Advisory Record",
-            "targetStep": "\/api\/3\/workflow_steps\/5de6896d-723a-4d81-89f1-af68d517fa03",
-            "sourceStep": "\/api\/3\/workflow_steps\/be72719d-7860-4d3e-9b50-c0ed81e29493",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "2d83cccf-56ab-4df9-ad78-bc6192b88fd1"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get JSON Data",
-            "targetStep": "\/api\/3\/workflow_steps\/4e25bd27-2fee-48fe-9f74-7a9679bd10d5",
             "sourceStep": "\/api\/3\/workflow_steps\/4b2f8824-26e7-411f-900f-2e93d6e853e7",
             "label": null,
             "isExecuted": false,
-            "uuid": "639a76af-ff91-41d3-a5b4-2e4e724a19a4"
+            "uuid": "01510581-8345-4cd3-961e-d4596f87fb3d"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Create Alerts -> Output",
+            "name": "Create CVEs Record -> Update CVEs With ICS Advisory",
+            "targetStep": "\/api\/3\/workflow_steps\/c9bc39dc-d529-47fa-9eb2-6029f51c24a8",
+            "sourceStep": "\/api\/3\/workflow_steps\/be72719d-7860-4d3e-9b50-c0ed81e29493",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0665778d-7934-41d8-bdac-e00b7995166f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create Alerts",
+            "targetStep": "\/api\/3\/workflow_steps\/f3004a79-dab7-4705-8372-6d5d8daf8c9f",
+            "sourceStep": "\/api\/3\/workflow_steps\/cbbd819b-69fe-463d-a5e1-4374080f2ecd",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "17946258-e455-432d-ab3c-e7004bc9b88b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create ICS Advisory Record -> Output",
             "targetStep": "\/api\/3\/workflow_steps\/2e18fdf1-e469-41e5-83a2-38568ab22ff6",
+            "sourceStep": "\/api\/3\/workflow_steps\/5de6896d-723a-4d81-89f1-af68d517fa03",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "543202cd-7324-43f4-a54b-1a8aae941d29"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Alerts -> Create ICS Advisory Record",
+            "targetStep": "\/api\/3\/workflow_steps\/5de6896d-723a-4d81-89f1-af68d517fa03",
             "sourceStep": "\/api\/3\/workflow_steps\/f3004a79-dab7-4705-8372-6d5d8daf8c9f",
             "label": null,
             "isExecuted": false,
-            "uuid": "6972d14e-d206-4e63-9881-d0e1fb31927c"
+            "uuid": "6aecbbb2-6fa0-4da9-a45b-8ac9432ea641"
         },
         {
             "@type": "WorkflowRoute",
@@ -381,42 +332,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "b31b0918-da04-4800-8ab2-c45d5ba70df3"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create ICS Advisory Record -> Update CVEs With ICS Advisory",
-            "targetStep": "\/api\/3\/workflow_steps\/c9bc39dc-d529-47fa-9eb2-6029f51c24a8",
-            "sourceStep": "\/api\/3\/workflow_steps\/5de6896d-723a-4d81-89f1-af68d517fa03",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e08b415e-ac3e-43fb-8e6b-eb029adb3734"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create KEV Alerts -> Create Alerts",
-            "targetStep": "\/api\/3\/workflow_steps\/f3004a79-dab7-4705-8372-6d5d8daf8c9f",
-            "sourceStep": "\/api\/3\/workflow_steps\/6141d610-530d-4e4f-9cd5-18919e669691",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "eb87ec45-358b-4c0e-a800-f93fea7c0c44"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get JSON Data -> Extract Artifacts",
-            "targetStep": "\/api\/3\/workflow_steps\/d51caf1e-0912-45fc-86f3-2641f89c8cc1",
-            "sourceStep": "\/api\/3\/workflow_steps\/4e25bd27-2fee-48fe-9f74-7a9679bd10d5",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f10bcf12-db22-45d8-90d7-aa42b1fb7143"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Create CVEs Record",
-            "targetStep": "\/api\/3\/workflow_steps\/be72719d-7860-4d3e-9b50-c0ed81e29493",
-            "sourceStep": "\/api\/3\/workflow_steps\/cbbd819b-69fe-463d-a5e1-4374080f2ecd",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f11cc978-7d0a-4205-9279-32b48959a675"
         }
     ],
     "groups": [],
@@ -427,11 +342,9 @@
     "deletedAt": null,
     "recordTags": [
         "Alert",
-        "Scenario",
-        "OT IT",
-        "KEV",
+        "Armis",
         "CVE",
-        "ICS Advisory",
-        "Armis"
+        "OT IT",
+        "Scenario"
     ]
 }

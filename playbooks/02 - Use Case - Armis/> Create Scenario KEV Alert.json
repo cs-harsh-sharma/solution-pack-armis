@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": null,
     "description": "Playbook creates scenario KEV Alert.",
-    "isActive": true,
+    "isActive": false,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -76,8 +76,8 @@
                 "kevAlert": "{{vars.input.params.kEVRecord}}"
             },
             "status": null,
-            "top": "160",
-            "left": "120",
+            "top": "165",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "48229969-f442-489d-8758-25f00428ee6f"
@@ -90,8 +90,8 @@
                 "kevIRI": "{{vars.steps.Create_KEV_Alert['@id']}}"
             },
             "status": null,
-            "top": "700",
-            "left": "120",
+            "top": "705",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "87915b17-9c54-4fa5-972b-b47e5cc0c9f5"
@@ -122,8 +122,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "560",
-            "left": "120",
+            "top": "570",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "e5a4ae85-2962-4d18-ad33-de4bb8c0210f"
@@ -157,7 +157,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "120",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "f5e20af0-e4bf-43f7-af9a-7b7f030ed689"
@@ -217,10 +217,10 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "Armis",
         "Alert",
+        "Armis",
+        "KEV",
         "Referenced",
-        "Scenario",
-        "KEV"
+        "Scenario"
     ]
 }

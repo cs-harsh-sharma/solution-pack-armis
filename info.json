@@ -41,7 +41,7 @@
     ],
     "supportInfo": null,
     "iconLarge": null,
-    "date": "2023-04-10T14:20:21+00:00",
+    "date": "2023-04-17T10:11:15+00:00",
     "contents": {
         "playbooks": [
             {
@@ -52,26 +52,8 @@
             {
                 "id": 16,
                 "name": "Demo_mode",
-                "value": "true",
+                "value": "false",
                 "default_value": "false"
-            }
-        ],
-        "connectors": [
-            {
-                "name": "Armis",
-                "apiName": "armis"
-            },
-            {
-                "name": "Fortinet FortiDeceptor",
-                "apiName": "fortinet-fortideceptor"
-            },
-            {
-                "name": "Fortinet FortiEDR",
-                "apiName": "fortinet-fortiedr"
-            },
-            {
-                "name": "ServiceNow",
-                "apiName": "servicenow"
             }
         ],
         "recordSets": [
